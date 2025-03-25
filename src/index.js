@@ -1,12 +1,15 @@
 import mongoose from "mongoose";
 import {DB_NAME} from "./constants.js"
 import connectDB from "./db/db.js";
+import express from 'express'
+import { app } from "./app.js";
 
 import dotenv from "dotenv"
 
+// const app = express()
 
 dotenv.config({
-    path : './env'
+    path : './.env'
 }
 )
 
@@ -20,7 +23,7 @@ connectDB()
     })
 })
 .catch((error) => {
-    console.error("momgodb error", error);
+    console.error("mongodb error", error);
 
     
 })
