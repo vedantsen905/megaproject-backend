@@ -1,6 +1,12 @@
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import dotenv from "dotenv"
+
+ dotenv.config({
+     path : './.env'
+ }
+ )
 
 
 
@@ -45,7 +51,7 @@ const userSchema = new mongoose.Schema({
 
     watchHistory : [
         {
-            type : Schema.Types.ObjectID,
+            type : mongoose.Schema.Types.ObjectID,
             ref : "Video"
         }
     ] ,
@@ -91,7 +97,10 @@ process.env.ACCESS_TOKEN_SECRET,
 })
 }
 
-userSchema.methods.genrateRefreshToken = function(){
+console.log(process.env.ACCESS_TOKEN_SECRET);
+
+
+userSchema.methods.generateRefreshToken = function(){
     return jwt.sign({
         _id:this._id
     },
